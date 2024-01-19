@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for our Flutter application wish our luck.
+This project is a starting point for our Flutter application wish us luck.
 
 A few resources to get you started if this is your first Flutter project:
 
