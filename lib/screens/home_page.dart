@@ -6,14 +6,14 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 
-class GridB extends StatefulWidget {
-  const GridB({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<GridB> createState() => _GridBState();
+  State<HomeScreen> createState() => _GridBState();
 }
 
-class _GridBState extends State<GridB> {
+class _GridBState extends State<HomeScreen> {
   final List<Map<String, dynamic>> gridMap = [
     {
       "name": "Ikivuguto",
@@ -33,7 +33,7 @@ class _GridBState extends State<GridB> {
     {
       "name": "Air Force",
       "title": "A white air force shoes",
-      "price": "\$275",
+      "price": "\$20",
       "images":
           "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
     },
