@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:test1/screens/Login.dart';
+import 'package:test1/screens/Signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -62,7 +64,9 @@ class Homepage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupScreen()));
+                    },
                     child: Text("Sign Up"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
@@ -75,7 +79,9 @@ class Homepage extends StatelessWidget {
                   ),
                   SizedBox(height: 20), // Add space between buttons
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+                    },
                     child: Text("Already have an account"),
                     style: OutlinedButton.styleFrom(
                       primary: Colors.white,
