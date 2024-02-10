@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class HelloWorld extends StatelessWidget {
   const HelloWorld({super.key});
 
@@ -34,8 +33,14 @@ class HelloWorld extends StatelessWidget {
         appBar: AppBar(
           title: Text("Hello World app"),
         ),
-        body: Center(child: Text("Hello World", style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.bold),)),
+        body: Center(
+            child: Text(
+          "Hello World",
+          style: TextStyle(
+              fontSize: 30, color: Colors.black, fontWeight: FontWeight.bold),
+        )),
       ),
     );
   }
 }
+
