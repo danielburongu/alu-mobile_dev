@@ -1,4 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:test1/screens/Login.dart';
+import 'package:test1/screens/Signup.dart';
 import 'screens/home_page.dart';
 
 void main() {
@@ -19,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HelloWorld(),
+      home: HelloWorld(),
     );
   }
 }
