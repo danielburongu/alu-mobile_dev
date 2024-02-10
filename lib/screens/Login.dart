@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -9,7 +11,8 @@ class LoginScreen extends StatelessWidget {
         //title: Text('MarketMaster'),
         backgroundColor: Color(0xFF32a8a2),
       ),
-      body: SingleChildScrollView( // Wrap with SingleChildScrollView
+      body: SingleChildScrollView(
+        // Wrap with SingleChildScrollView
         child: Padding(
           padding: EdgeInsets.all(20.0),
           child: Column(
@@ -46,7 +49,6 @@ class LoginScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
                       TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Enter your email',
@@ -66,7 +68,6 @@ class LoginScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
                       TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Enter your password',
