@@ -10,6 +10,6 @@ Simplifying shopping: Implement a shopping cart feature where students can add i
 </ul>
 </p>
 
-## Note: -Here is the link to the [project prototype](https://app.adalo.com/apps/1332a0f2-94e4-42b2-9da0-60789c9e572c/screens)
+> Note: -Here is the link to the [project prototype](https://app.adalo.com/apps/1332a0f2-94e4-42b2-9da0-60789c9e572c/screens)
 
 
