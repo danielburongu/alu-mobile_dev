@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:test1/screens/Login.dart';
 import 'package:test1/screens/Signup.dart';
 import 'screens/home_page.dart';
+import 'screens/Add_product.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,11 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-<<<<<<< HEAD
-      home: HomeScreen(),
-=======
-      home: WelcomePage(),
->>>>>>> bfe7f47a7c9cacb0bf853169d80d3fed5665e1f6
+      home: AddProductScreen(),
     );
   }
 }
@@ -50,7 +47,10 @@ class WelcomePage extends StatelessWidget {
               SizedBox(height: 180), // Add space from top
               Text(
                 "Market-Master",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white70),
+                style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white70),
               ),
               SizedBox(height: 50),
               ClipRRect(
@@ -60,7 +60,7 @@ class WelcomePage extends StatelessWidget {
                   width: 300,
                   height: 200,
                   fit: BoxFit.cover,
-                
+
                   // Adjust the width and height as needed
                 ),
               ),
@@ -71,13 +71,18 @@ class WelcomePage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignupScreen()));
                     },
                     child: Text("Sign Up"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
-                      onPrimary: Color(0xFF32a8a2), // Change the text color to match background
-                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      onPrimary: Color(
+                          0xFF32a8a2), // Change the text color to match background
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
@@ -86,13 +91,17 @@ class WelcomePage extends StatelessWidget {
                   SizedBox(height: 20), // Add space between buttons
                   OutlinedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
                     },
                     child: Text("Already have an account"),
                     style: OutlinedButton.styleFrom(
                       primary: Colors.white,
                       side: BorderSide(color: Colors.white),
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
@@ -108,15 +117,18 @@ class WelcomePage extends StatelessWidget {
         backgroundColor: Color(0xFF32a8a2),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home,size: 40.0, color: Color.fromARGB(255, 255, 255, 255)),
+            icon: Icon(Icons.home,
+                size: 40.0, color: Color.fromARGB(255, 255, 255, 255)),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person,size: 40.0, color: Color.fromARGB(255, 255, 255, 255)),
+            icon: Icon(Icons.person,
+                size: 40.0, color: Color.fromARGB(255, 255, 255, 255)),
             label: 'Profile',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add,size: 40.0, color: Color.fromARGB(255, 255, 255, 255)),
+            icon: Icon(Icons.add,
+                size: 40.0, color: Color.fromARGB(255, 255, 255, 255)),
             label: 'Add Product',
           ),
         ],
@@ -124,6 +136,7 @@ class WelcomePage extends StatelessWidget {
     );
   }
 }
+
 class HelloWorld extends StatelessWidget {
   const HelloWorld({super.key});
 
@@ -144,4 +157,3 @@ class HelloWorld extends StatelessWidget {
     );
   }
 }
-

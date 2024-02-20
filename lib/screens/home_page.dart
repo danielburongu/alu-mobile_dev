@@ -16,14 +16,6 @@ class HomeScreen extends StatefulWidget {
 class _GridBState extends State<HomeScreen> {
   final List<Map<String, dynamic>> gridMap = [
     {
-      "name": "Ikivuguto",
-      "title": "5 litres of fermented milk",
-      "price": "\$4.5",
-      "images":
-          "https://www.culinarytravellers.com/wp-content/uploads/2021/06/ikivuguto-1-2-1-1024x731.jpg.webp",
-    },
-
-    {
       "name": "Jeans",
       "title": "Black Jeans with blue stripes",
       "price": "\$10",
