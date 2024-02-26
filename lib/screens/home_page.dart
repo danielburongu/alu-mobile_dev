@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:test1/screens/Add_product.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -61,7 +63,7 @@ class _GridBState extends State<HomeScreen> {
     },
     // Add more product data as needed
   ];
-
+  
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -71,13 +73,53 @@ class _GridBState extends State<HomeScreen> {
           expandedHeight: 70.0, // Set the desired height
           centerTitle: true, // Center the title
           flexibleSpace: FlexibleSpaceBar(
-            title: Text(
-              "All Products",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-                color: Colors.black,
-              ),
+            title: Row(
+              children: [
+                Text(
+                  "All Products",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(width: 50, height: 20),
+                // IconButton(onPressed: ()=> {}, icon:Icon(Icons.add), iconSize: 30,)
+                StreamBuilder<User?>(
+                  stream: FirebaseAuth.instance.authStateChanges(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      // If waiting for data, return a loading indicator
+                      return CircularProgressIndicator();
+                    } else {
+                      if (snapshot.hasError) {
+                        // If an error occurred, return an error message
+                        return Text("Error: ${snapshot.error}");
+                      } else if (snapshot.hasData) {
+                        // If user data is available
+                        final User? user = snapshot.data;
+                        
+                        if (user != null) {
+                          if (user.email == "admin@gmail.com") {
+                            return IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            AddProductScreen()));
+                              },
+                              icon: Icon(Icons.add),
+                            );
+                          }
+                        }
+                      }
+                      // If no user data available, return an empty container
+                      return SizedBox(width: 0, height: 0);
+                    }
+                  },
+                ),
+              ],
             ),
           ),
         ),

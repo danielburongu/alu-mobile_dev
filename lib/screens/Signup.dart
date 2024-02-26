@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test1/screens/Login.dart';
 import 'package:test1/screens/home_page.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _userEmail = TextEditingController();
   final _userpassword = TextEditingController();
   final _userFullName = TextEditingController();
-
+  late bool isAdmin;
   //  ======= HANDLE REGISTER NEW USER =========
   Future handleSignUp(BuildContext context) async {
     showDialog(
@@ -26,6 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
       String userEmail = _userEmail.text.trim();
       String userPassword = _userpassword.text.trim();
       String fullname = _userFullName.text.trim();
+      isAdmin = false;
       if (userEmail.isEmpty || userPassword.isEmpty || fullname.isEmpty) {
         throw ('All fields are required');
       } else {
@@ -34,7 +35,8 @@ class _SignupScreenState extends State<SignupScreen> {
             email: userEmail, password: userPassword);
 
         // === ADD USER TO THE FIRESTORE DATABASE ======
-        addUserToDB(fullname, userEmail, userPassword);
+
+        addUserToDB(fullname, userEmail, userPassword, isAdmin);
         // Navigate to the home screen
         // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
@@ -63,10 +65,14 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   // ===== Add user To DB function ====
-  Future addUserToDB(String fullname, String email, String password) async {
-    await FirebaseFirestore.instance
-        .collection("users")
-        .add({'fullname': fullname, "email": email, "password": password});
+  Future addUserToDB(
+      String fullname, String email, String password, bool isAdmin) async {
+    await FirebaseFirestore.instance.collection("users").add({
+      'fullname': fullname,
+      "email": email,
+      "password": password,
+      "isAdmin": false
+    });
   }
 
   @override
@@ -177,7 +183,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       SizedBox(height: 10.0),
                       TextButton(
-                        onPressed: ()=>{},
+                        onPressed: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()))
+                        },
                         style: TextButton.styleFrom(
                           primary: Colors.black,
                         ),
