@@ -1,8 +1,63 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test1/screens/Signup.dart';
+import 'package:test1/screens/home_page.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _useremail = TextEditingController();
+
+  final _userpassword = TextEditingController();
+
+  // void handleLogin() async {
+  void handleLogin(BuildContext context) async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Center(child: CircularProgressIndicator());
+        });
+    try {
+      String userEmail = _useremail.text.trim();
+      String userPassword = _userpassword.text.trim();
+      if (userEmail.isEmpty || userPassword.isEmpty) {
+        throw ('All fields are required');
+      } else {
+        // Sign in with email and password
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: userEmail, password: userPassword);
+
+        // Navigate to the home screen
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      showErrorMessage(e.code);
+    }
+  }
+
+  void showErrorMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.red,
+            title: Center(
+              child: Text(message),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +105,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       TextFormField(
+                        controller: _useremail,
                         decoration: InputDecoration(
                           hintText: 'Enter your email',
                           border: OutlineInputBorder(
@@ -69,6 +125,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       TextFormField(
+                        controller: _userpassword,
                         decoration: InputDecoration(
                           hintText: 'Enter your password',
                           border: OutlineInputBorder(
@@ -83,9 +140,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 20.0),
                       ElevatedButton(
-                        onPressed: () {
-                          // Handle login button press
-                        },
+                        onPressed: () => handleLogin(context),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.orange, // Background color
                         ),
@@ -104,7 +159,10 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 10.0),
                       TextButton(
                         onPressed: () {
-                          // Handle sign up button press
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignupScreen()));
                         },
                         style: TextButton.styleFrom(
                           primary: Colors.black, // Text color

@@ -6,8 +6,14 @@ import 'package:test1/screens/Login.dart';
 import 'package:test1/screens/Signup.dart';
 import 'screens/home_page.dart';
 import 'screens/Add_product.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

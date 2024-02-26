@@ -1,6 +1,74 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_const_constructors
 
-class SignupScreen extends StatelessWidget {
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:test1/screens/home_page.dart';
+
+class SignupScreen extends StatefulWidget {
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final _userEmail = TextEditingController();
+  final _userpassword = TextEditingController();
+  final _userFullName = TextEditingController();
+
+  //  ======= HANDLE REGISTER NEW USER =========
+  Future handleSignUp(BuildContext context) async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Center(child: CircularProgressIndicator());
+        });
+    try {
+      String userEmail = _userEmail.text.trim();
+      String userPassword = _userpassword.text.trim();
+      String fullname = _userFullName.text.trim();
+      if (userEmail.isEmpty || userPassword.isEmpty || fullname.isEmpty) {
+        throw ('All fields are required');
+      } else {
+        // Sign in with email and password
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: userEmail, password: userPassword);
+
+        // === ADD USER TO THE FIRESTORE DATABASE ======
+        addUserToDB(fullname, userEmail, userPassword);
+        // Navigate to the home screen
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      showErrorMessage(e.code);
+    }
+  }
+
+  // ======== DISPLAY ERROR POPUP ========
+  void showErrorMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.red,
+            title: Center(
+              child: Text(message),
+            ),
+          );
+        });
+  }
+
+  // ===== Add user To DB function ====
+  Future addUserToDB(String fullname, String email, String password) async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .add({'fullname': fullname, "email": email, "password": password});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +114,7 @@ class SignupScreen extends StatelessWidget {
                         ),
                       ),
                       TextFormField(
+                        controller: _userEmail,
                         decoration: InputDecoration(
                           hintText: 'Enter your email',
                           border: OutlineInputBorder(
@@ -65,6 +134,7 @@ class SignupScreen extends StatelessWidget {
                         ),
                       ),
                       TextFormField(
+                        controller: _userpassword,
                         decoration: InputDecoration(
                           hintText: 'Enter your password',
                           border: OutlineInputBorder(
@@ -85,6 +155,7 @@ class SignupScreen extends StatelessWidget {
                         ),
                       ),
                       TextFormField(
+                        controller: _userFullName,
                         decoration: InputDecoration(
                           hintText: 'Enter your full name',
                           border: OutlineInputBorder(
@@ -98,9 +169,7 @@ class SignupScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 20.0),
                       ElevatedButton(
-                        onPressed: () {
-                          // Handle sign up button press
-                        },
+                        onPressed: () => handleSignUp(context),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.orange,
                         ),
@@ -108,9 +177,7 @@ class SignupScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10.0),
                       TextButton(
-                        onPressed: () {
-                          // Handle navigation to login screen
-                        },
+                        onPressed: ()=>{},
                         style: TextButton.styleFrom(
                           primary: Colors.black,
                         ),
