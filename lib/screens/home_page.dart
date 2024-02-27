@@ -71,7 +71,6 @@ class _GridBState extends State<HomeScreen> {
         .collection("products")
         .get()
         .then((snapshot) => snapshot.docs.forEach((document) {
-              print(document.reference);
               docIds.add(document.reference.id);
             }));
   }
@@ -81,14 +80,189 @@ class _GridBState extends State<HomeScreen> {
     getDocIds().whenComplete(() => setState(() {}));
     super.initState();
   }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return CustomScrollView(
+  //     slivers: [
+  //       SliverAppBar(
+  //         pinned: true, // Make the app bar sticky
+  //         expandedHeight: 70.0, // Set the desired height
+  //         centerTitle: true, // Center the title
+  //         flexibleSpace: FlexibleSpaceBar(
+  //           title: Row(
+  //             children: [
+  //               Text(
+  //                 "All Products",
+  //                 style: TextStyle(
+  //                   fontWeight: FontWeight.bold,
+  //                   fontSize: 20.0,
+  //                   color: Colors.black,
+  //                 ),
+  //               ),
+  //               SizedBox(width: 50, height: 20),
+  //               // IconButton(onPressed: ()=> {}, icon:Icon(Icons.add), iconSize: 30,)
+  //               StreamBuilder<User?>(
+  //                 stream: FirebaseAuth.instance.authStateChanges(),
+  //                 builder: (context, snapshot) {
+  //                   if (snapshot.connectionState == ConnectionState.waiting) {
+  //                     // If waiting for data, return a loading indicator
+  //                     return CircularProgressIndicator();
+  //                   } else {
+  //                     if (snapshot.hasError) {
+  //                       // If an error occurred, return an error message
+  //                       return Text("Error: ${snapshot.error}");
+  //                     } else if (snapshot.hasData) {
+  //                       // If user data is available
+  //                       final User? user = snapshot.data;
+
+  //                       if (user != null) {
+  //                         if (user.email == "admin@gmail.com") {
+  //                           return IconButton(
+  //                             onPressed: () {
+  //                               Navigator.push(
+  //                                   context,
+  //                                   MaterialPageRoute(
+  //                                       builder: (context) =>
+  //                                           AddProductScreen()));
+  //                             },
+  //                             icon: Icon(Icons.add),
+  //                           );
+  //                         }
+  //                       }
+  //                     }
+  //                     // If no user data available, return an empty container
+  //                     return SizedBox(width: 0, height: 0);
+  //                   }
+  //                 },
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //       SliverPadding(
+  //         padding: const EdgeInsets.all(16.0),
+  //         sliver: SliverGrid(
+  //           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+  //             crossAxisCount: 2,
+  //             crossAxisSpacing: 12.0,
+  //             mainAxisSpacing: 12.0,
+  //             mainAxisExtent: 360,
+  //           ),
+  //           delegate: SliverChildBuilderDelegate(
+  //             (BuildContext context, int index) {
+  //               if (gridMap[index]['name'] != null &&
+  //                   gridMap[index]['title'] != null &&
+  //                   gridMap[index]['price'] != null &&
+  //                   gridMap[index]['images'] != null) {
+  //                 return Container(
+  //                   margin: const EdgeInsets.all(8.0),
+  //                   decoration: BoxDecoration(
+  //                     borderRadius: BorderRadius.circular(16.0),
+  //                     color: Colors.blue[200],
+  //                   ),
+  //                   child: Column(
+  //                     crossAxisAlignment: CrossAxisAlignment.start,
+  //                     children: [
+  //                       ClipRRect(
+  //                         borderRadius: const BorderRadius.only(
+  //                           topLeft: Radius.circular(16.0),
+  //                           topRight: Radius.circular(16.0),
+  //                         ),
+  //                         child: Image.network(
+  //                           "${gridMap.elementAt(index)['images']}",
+  //                           height: 170,
+  //                           width: double.infinity,
+  //                           fit: BoxFit.cover,
+  //                         ),
+  //                       ),
+  //                       Padding(
+  //                         padding: const EdgeInsets.all(8.0),
+  //                         child: Column(
+  //                           crossAxisAlignment: CrossAxisAlignment.start,
+  //                           children: [
+  //                             Text(
+  //                               "${gridMap.elementAt(index)['name']}",
+  //                               style: Theme.of(context)
+  //                                   .textTheme
+  //                                   .titleSmall!
+  //                                   .merge(
+  //                                     TextStyle(
+  //                                       fontWeight: FontWeight.bold,
+  //                                       color: Colors.black,
+  //                                     ),
+  //                                   ),
+  //                             ),
+  //                             Text(
+  //                               "${gridMap.elementAt(index)['price']}",
+  //                               style: Theme.of(context)
+  //                                   .textTheme
+  //                                   .titleSmall!
+  //                                   .merge(
+  //                                     TextStyle(
+  //                                       fontWeight: FontWeight.bold,
+  //                                       color: Colors.white,
+  //                                     ),
+  //                                   ),
+  //                             ),
+  //                             Text(
+  //                               "${gridMap.elementAt(index)['title']}",
+  //                               style: Theme.of(context)
+  //                                   .textTheme
+  //                                   .titleMedium!
+  //                                   .merge(
+  //                                     const TextStyle(
+  //                                       fontWeight: FontWeight.w700,
+  //                                     ),
+  //                                   ),
+  //                             ),
+  //                             const SizedBox(
+  //                               height: 8.0,
+  //                             ),
+  //                             const SizedBox(
+  //                               height: 8.0,
+  //                             ),
+  //                             Row(
+  //                               children: [
+  //                                 IconButton(
+  //                                   onPressed: () {},
+  //                                   icon: Icon(
+  //                                     CupertinoIcons.heart,
+  //                                   ),
+  //                                 ),
+  //                                 IconButton(
+  //                                   onPressed: () {},
+  //                                   icon: Icon(
+  //                                     CupertinoIcons.cart,
+  //                                   ),
+  //                                 ),
+  //                               ],
+  //                             ),
+  //                           ],
+  //                         ),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 );
+  //               } else {
+  //                 return Container();
+  //               }
+  //             },
+  //             childCount: gridMap.length,
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          pinned: true, // Make the app bar sticky
-          expandedHeight: 70.0, // Set the desired height
-          centerTitle: true, // Center the title
+          pinned: true,
+          expandedHeight: 70.0,
+          centerTitle: true,
           flexibleSpace: FlexibleSpaceBar(
             title: Row(
               children: [
@@ -101,39 +275,31 @@ class _GridBState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(width: 50, height: 20),
-                // IconButton(onPressed: ()=> {}, icon:Icon(Icons.add), iconSize: 30,)
                 StreamBuilder<User?>(
                   stream: FirebaseAuth.instance.authStateChanges(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      // If waiting for data, return a loading indicator
                       return CircularProgressIndicator();
-                    } else {
-                      if (snapshot.hasError) {
-                        // If an error occurred, return an error message
-                        return Text("Error: ${snapshot.error}");
-                      } else if (snapshot.hasData) {
-                        // If user data is available
-                        final User? user = snapshot.data;
+                    } else if (snapshot.hasError) {
+                      return Text("Error: ${snapshot.error}");
+                    } else if (snapshot.hasData) {
+                      final User? user = snapshot.data;
 
-                        if (user != null) {
-                          if (user.email == "admin@gmail.com") {
-                            return IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            AddProductScreen()));
-                              },
-                              icon: Icon(Icons.add),
+                      if (user != null && user.email == "admin@gmail.com") {
+                        return IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddProductScreen(),
+                              ),
                             );
-                          }
-                        }
+                          },
+                          icon: Icon(Icons.add),
+                        );
                       }
-                      // If no user data available, return an empty container
-                      return SizedBox(width: 0, height: 0);
                     }
+                    return SizedBox(width: 0, height: 0);
                   },
                 ),
               ],
@@ -142,114 +308,124 @@ class _GridBState extends State<HomeScreen> {
         ),
         SliverPadding(
           padding: const EdgeInsets.all(16.0),
-          sliver: SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 12.0,
-              mainAxisSpacing: 12.0,
-              mainAxisExtent: 360,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                if (gridMap[index]['name'] != null &&
-                    gridMap[index]['title'] != null &&
-                    gridMap[index]['price'] != null &&
-                    gridMap[index]['images'] != null) {
-                  return Container(
-                    margin: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
-                      color: Colors.blue[200],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(16.0),
-                            topRight: Radius.circular(16.0),
-                          ),
-                          child: Image.network(
-                            "${gridMap.elementAt(index)['images']}",
-                            height: 170,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
+          sliver: StreamBuilder<QuerySnapshot>(
+            stream:
+                FirebaseFirestore.instance.collection('products').snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return SliverToBoxAdapter(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return SliverToBoxAdapter(
+                    child: Text("Error: ${snapshot.error}"));
+              } else {
+                final products = snapshot.data!.docs;
+                print(products);
+                return SliverGrid(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12.0,
+                    mainAxisSpacing: 12.0,
+                    mainAxisExtent: 360,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      final product =
+                          products[index].data() as Map<String, dynamic>;
+                      return Container(
+                        margin: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.0),
+                          color: Colors.blue[200],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${gridMap.elementAt(index)['name']}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .merge(
-                                      TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(16.0),
+                                topRight: Radius.circular(16.0),
                               ),
-                              Text(
-                                "${gridMap.elementAt(index)['price']}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .merge(
-                                      TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
+                              child: Image.network(
+                                product['imageUrl'],
+                                height: 170,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
                               ),
-                              Text(
-                                "${gridMap.elementAt(index)['title']}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .merge(
-                                      const TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                              ),
-                              const SizedBox(
-                                height: 8.0,
-                              ),
-                              const SizedBox(
-                                height: 8.0,
-                              ),
-                              Row(
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      CupertinoIcons.heart,
-                                    ),
+                                  Text(
+                                    product['productName'],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
                                   ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      CupertinoIcons.cart,
-                                    ),
+                                  Text(
+                                    product['price'].toString(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                  ),
+                                  Text(
+                                    product['description'],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .merge(
+                                          const TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                  ),
+                                  const SizedBox(
+                                    height: 8.0,
+                                  ),
+                                  const SizedBox(
+                                    height: 8.0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          CupertinoIcons.heart,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          CupertinoIcons.cart,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                } else {
-                  return Container();
-                }
-              },
-              childCount: gridMap.length,
-            ),
+                      );
+                    },
+                    childCount: products.length,
+                  ),
+                );
+              }
+            },
           ),
         ),
       ],
