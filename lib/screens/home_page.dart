@@ -15,54 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _GridBState extends State<HomeScreen> {
-  final List<Map<String, dynamic>> gridMap = [
-    {
-      "name": "Jeans",
-      "title": "Black Jeans with blue stripes",
-      "price": "\$10",
-      "images":
-          "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-    },
-    {
-      "name": "Air Force",
-      "title": "A white air force shoes",
-      "price": "\$20",
-      "images":
-          "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-    },
-    {
-      "name": "Nike Sport shoes",
-      "title": "Red shoes with black stripes",
-      "price": "\$18",
-      "images":
-          "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-    },
-
-    {
-      "name": "T-Shirt",
-      "title": "Alpha t-shirt for alpha testers.",
-      "price": "\$25",
-      "images":
-          "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-    },
-    {
-      "name": "Air Max",
-      "title": "white sneaker with adidas logo",
-      "price": "\$20",
-      "images":
-          "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80",
-    },
-
-    {
-      "name": "Pork",
-      "title": "1kg of Fresh meat(pig)",
-      "price": "\$3.5",
-      "images":
-          "https://media.post.rvohealth.io/wp-content/uploads/2020/08/pork-1200x628-facebook-1200x628.jpg",
-    },
-    // Add more product data as needed
-  ];
-
   List<String> docIds = [];
 
   // get all ids
@@ -144,7 +96,6 @@ class _GridBState extends State<HomeScreen> {
                     child: Text("Error: ${snapshot.error}"));
               } else {
                 final products = snapshot.data!.docs;
-                print(products);
                 return SliverGrid(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
