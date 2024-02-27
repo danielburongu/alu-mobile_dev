@@ -1,13 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:test1/screens/Login.dart';
 import 'package:test1/screens/Signup.dart';
-import 'screens/home_page.dart';
-import 'screens/Add_product.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -76,17 +79,16 @@ class WelcomePage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => SignupScreen()));
                     },
-                    child: Text("Sign Up"),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Color(
-                          0xFF32a8a2), // Change the text color to match background
+                      foregroundColor: Color(
+                          0xFF32a8a2), backgroundColor: Colors.white, // Change the text color to match background
                       padding:
                           EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
+                    child: Text("Sign Up"),
                   ),
                   SizedBox(height: 20), // Add space between buttons
                   OutlinedButton(
@@ -96,16 +98,15 @@ class WelcomePage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => LoginScreen()));
                     },
-                    child: Text("Already have an account"),
                     style: OutlinedButton.styleFrom(
-                      primary: Colors.white,
-                      side: BorderSide(color: Colors.white),
+                      foregroundColor: Colors.white, side: BorderSide(color: Colors.white),
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
+                    child: Text("Already have an account"),
                   ),
                 ],
               )
