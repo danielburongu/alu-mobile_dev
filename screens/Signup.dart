@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF32a8a2),
+      backgroundColor: const Color(0xFF32a8a2),
       appBar: AppBar(
-        backgroundColor: Color(0xFF32a8a2),
+        backgroundColor: const Color(0xFF32a8a2),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Text(
+              const Text(
                 'MarketMaster',
                 style: TextStyle(
                   fontSize: 30.0,
@@ -21,15 +23,15 @@ class SignupScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Card(
                 elevation: 5.0,
                 child: Padding(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
+                      const Text(
                         'Sign Up',
                         style: TextStyle(
                           fontSize: 24.0,
@@ -38,8 +40,8 @@ class SignupScreen extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 20.0),
-                      Text(
+                      const SizedBox(height: 20.0),
+                      const Text(
                         'Email',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -50,15 +52,15 @@ class SignupScreen extends StatelessWidget {
                           hintText: 'Enter your email',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFF32a8a2),
                               width: 2.0,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20.0),
-                      Text(
+                      const SizedBox(height: 20.0),
+                      const Text(
                         'Password',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -69,7 +71,7 @@ class SignupScreen extends StatelessWidget {
                           hintText: 'Enter your password',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFF32a8a2),
                               width: 2.0,
                             ),
@@ -77,8 +79,8 @@ class SignupScreen extends StatelessWidget {
                         ),
                         obscureText: true,
                       ),
-                      SizedBox(height: 20.0),
-                      Text(
+                      const SizedBox(height: 20.0),
+                      const Text(
                         'Full Name',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -89,32 +91,32 @@ class SignupScreen extends StatelessWidget {
                           hintText: 'Enter your full name',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xFF32a8a2),
                               width: 2.0,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20.0),
+                      const SizedBox(height: 20.0),
                       ElevatedButton(
                         onPressed: () {
                           // Handle sign up button press
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.orange,
+                          backgroundColor: Colors.orange,
                         ),
-                        child: Text('SIGN UP'),
+                        child: const Text('SIGN UP'),
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       TextButton(
                         onPressed: () {
                           // Handle navigation to login screen
                         },
                         style: TextButton.styleFrom(
-                          primary: Colors.black,
+                          foregroundColor: Colors.black,
                         ),
-                        child: Text('ALREADY HAVE AN ACCOUNT?'),
+                        child: const Text('ALREADY HAVE AN ACCOUNT?'),
                       ),
                     ],
                   ),
@@ -129,7 +131,7 @@ class SignupScreen extends StatelessWidget {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: SignupScreen(),
     debugShowCheckedModeBanner: false,
   ));

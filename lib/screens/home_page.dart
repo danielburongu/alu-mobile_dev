@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:test1/screens/Add_product.dart';
@@ -63,7 +62,25 @@ class _GridBState extends State<HomeScreen> {
     },
     // Add more product data as needed
   ];
-  
+
+  List<String> docIds = [];
+
+  // get all ids
+  Future getDocIds() async {
+    await FirebaseFirestore.instance
+        .collection("products")
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              print(document.reference);
+              docIds.add(document.reference.id);
+            }));
+  }
+
+  @override
+  void initState() {
+    getDocIds().whenComplete(() => setState(() {}));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -98,7 +115,7 @@ class _GridBState extends State<HomeScreen> {
                       } else if (snapshot.hasData) {
                         // If user data is available
                         final User? user = snapshot.data;
-                        
+
                         if (user != null) {
                           if (user.email == "admin@gmail.com") {
                             return IconButton(
@@ -168,7 +185,7 @@ class _GridBState extends State<HomeScreen> {
                                 "${gridMap.elementAt(index)['name']}",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .subtitle2!
+                                    .titleSmall!
                                     .merge(
                                       TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -180,7 +197,7 @@ class _GridBState extends State<HomeScreen> {
                                 "${gridMap.elementAt(index)['price']}",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .subtitle2!
+                                    .titleSmall!
                                     .merge(
                                       TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -192,7 +209,7 @@ class _GridBState extends State<HomeScreen> {
                                 "${gridMap.elementAt(index)['title']}",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .subtitle1!
+                                    .titleMedium!
                                     .merge(
                                       const TextStyle(
                                         fontWeight: FontWeight.w700,

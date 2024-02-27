@@ -6,6 +6,8 @@ import 'package:test1/screens/Signup.dart';
 import 'package:test1/screens/home_page.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -142,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ElevatedButton(
                         onPressed: () => handleLogin(context),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.orange, // Background color
+                          backgroundColor: Colors.orange, // Background color
                         ),
                         child: Text('LOG IN'),
                       ),
@@ -152,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Handle forgot password button press
                         },
                         style: TextButton.styleFrom(
-                          primary: Colors.black, // Text color
+                          foregroundColor: Colors.black, // Text color
                         ),
                         child: Text('FORGOT PASSWORD?'),
                       ),
@@ -165,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   builder: (context) => SignupScreen()));
                         },
                         style: TextButton.styleFrom(
-                          primary: Colors.black, // Text color
+                          foregroundColor: Colors.black, // Text color
                         ),
                         child: Text('SIGN UP'),
                       ),

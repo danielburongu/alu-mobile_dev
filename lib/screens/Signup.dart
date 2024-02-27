@@ -6,6 +6,8 @@ import 'package:test1/screens/Login.dart';
 import 'package:test1/screens/home_page.dart';
 
 class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
+
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
@@ -177,7 +179,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ElevatedButton(
                         onPressed: () => handleSignUp(context),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.orange,
+                          backgroundColor: Colors.orange,
                         ),
                         child: Text('SIGN UP'),
                       ),
@@ -190,7 +192,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   builder: (context) => LoginScreen()))
                         },
                         style: TextButton.styleFrom(
-                          primary: Colors.black,
+                          foregroundColor: Colors.black,
                         ),
                         child: Text('ALREADY HAVE AN ACCOUNT?'),
                       ),
