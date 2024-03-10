@@ -1,9 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:test1/screens/Login.dart';
 import 'package:test1/screens/Signup.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:test1/screens/onboarding_screen.dart';
+import 'package:test1/services/auth_repo.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,6 +16,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Get.putAsync(() async => AuthentificationRepository());
   runApp(const MyApp());
 }
 
@@ -20,7 +26,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of my application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: ' Demo assignment 1',
       theme: ThemeData(
         // This is the theme of the application.
@@ -28,7 +34,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: WelcomePage(),
+      home: OnboardingScreen(),
     );
   }
 }
@@ -59,7 +65,7 @@ class WelcomePage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  'lib/images/market.jpg',
+                  'lib/images/new market.jpg',
                   width: 300,
                   height: 200,
                   fit: BoxFit.cover,

@@ -2,8 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:test1/screens/Add_product.dart';
 import 'package:test1/screens/UpdatePage.dart';
+import 'package:test1/screens/profile.dart';
 import 'package:test1/services/database.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,8 +21,15 @@ class _GridBState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Products"),
+        title: Text("All Products", style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: (){
+            Get.to(()=> Profile());
+          },
+          icon: Icon(CupertinoIcons.person_alt_circle_fill, ),
+        ),
         actions: [
           StreamBuilder<User?>(
             stream: FirebaseAuth.instance.authStateChanges(),
@@ -30,7 +40,7 @@ class _GridBState extends State<HomeScreen> {
                 return Text("Error: ${snapshot.error}");
               } else if (snapshot.hasData) {
                 final User? user = snapshot.data;
-                if (user != null && user.email == "admin@gmail.com") {
+                if (user != null && user.email == "daniel@gmail.com") {
                   return IconButton(
                     onPressed: () {
                       Navigator.push(
