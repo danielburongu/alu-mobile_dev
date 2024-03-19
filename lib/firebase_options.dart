@@ -69,6 +69,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '849396730061',
     projectId: 'market-master-8f760',
     storageBucket: 'market-master-8f760.appspot.com',
+    androidClientId: '849396730061-14srvrshae2om7oksl8hauivpjupe67f.apps.googleusercontent.com',
+    iosClientId: '849396730061-gqcjvis5pi7thvipgh6nm4ou68uhah4u.apps.googleusercontent.com',
     iosBundleId: 'com.example.test1',
   );
 }
