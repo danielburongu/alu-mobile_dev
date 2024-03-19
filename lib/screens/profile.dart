@@ -90,7 +90,7 @@ class Profile extends StatelessWidget {
                                     leading: Icon(Icons.logout, color: Colors.red, size: 30,),
                                     title: Text("Logout", style: TextStyle(fontSize: 17),),
                                     onTap: () {
-                                      AuthentificationRepository.instance.logout();
+                                      AuthentificationRepository.instance.signOut();
                                     },
                                   ),
 
