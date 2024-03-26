@@ -21,14 +21,19 @@ class _GridBState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Products", style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          "All Products",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: (){
-            Get.to(()=> Profile());
+          onPressed: () {
+            Get.to(() => Profile());
           },
-          icon: Icon(CupertinoIcons.person_alt_circle_fill, ),
+          icon: Icon(
+            CupertinoIcons.person_alt_circle_fill,
+          ),
         ),
         actions: [
           StreamBuilder<User?>(

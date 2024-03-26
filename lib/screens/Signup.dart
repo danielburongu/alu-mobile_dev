@@ -122,6 +122,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                       TextFormField(
+                        key: Key('_userEmail'),
                         controller: _userEmail,
                         decoration: InputDecoration(
                           hintText: 'Enter your email',
@@ -142,6 +143,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                       TextFormField(
+                        key: Key('_userpassword'),
                         controller: _userpassword,
                         decoration: InputDecoration(
                           hintText: 'Enter your password',
@@ -163,6 +165,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                       TextFormField(
+                        key: Key('_userFullName'),
                         controller: _userFullName,
                         decoration: InputDecoration(
                           hintText: 'Enter your full name',
