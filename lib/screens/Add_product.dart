@@ -174,6 +174,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
               ),
               SizedBox(height: 18),
               ElevatedButton(
+                key: const Key('add_product_button'),
                 onPressed: _uploadProduct,
                 style: ButtonStyle(
                   backgroundColor:
